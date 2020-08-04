@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMemo} from 'react';
 
 function App () {
   const [tech, setTech] = useState ([]);
@@ -27,11 +27,15 @@ function App () {
     [tech]
   );
 
+  const techSize = useMemo (() => tech.length, [tech]);
+
   return (
     <nav>
       <ul>
         {tech.map (t => <li key={t}>{t}</li>)}
       </ul>
+      <strong>Você tem {techSize} tecnologias</strong>
+      <br />
       <input value={newTech} onChange={e => setNewTech (e.target.value)} />
       <button type="button" onClick={handleAdd}>
         Adicionar
